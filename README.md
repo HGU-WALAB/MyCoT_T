@@ -1,13 +1,4 @@
-## NODE.JS
+## 23-2 Capstone Project
 
-- Node 16.x || 18.x
+- 코딩 테스트 준비 도우미 MyCoT
 
-## USING YARN (Recommend)
-
-- yarn install
-- yarn start
-
-## USING NPM
-
-- npm i OR npm i --legacy-peer-deps
-- npm start
