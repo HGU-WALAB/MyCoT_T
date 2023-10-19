@@ -39,6 +39,14 @@ const ICONS = {
   ecommerce: icon('ic_ecommerce'),
   analytics: icon('ic_analytics'),
   dashboard: icon('ic_dashboard'),
+  // 문제집 목록 위한 리스트 아이콘
+  plist: icon('plist'),
+  // 유저 메인 화면
+  home: icon('home'),
+  // 유저 메인 화면
+  book: icon('book'),
+  // 유저 메인 화면
+  search: icon('search'),
 };
 
 // ----------------------------------------------------------------------
@@ -49,31 +57,31 @@ export function useNavData() {
       // OVERVIEW
       // ----------------------------------------------------------------------
       {
-        subheader: 'overview v5.5.0',
+        subheader: '이동하기',
         items: [
-          { title: 'one', path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: 'two', path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: '홈', path: paths.dashboard.root, icon: ICONS.home },
+          { title: '탐색', path: paths.dashboard.two, icon: ICONS.search },
           {
-            title: 'three',
+            title: '내 문제집',
             path: paths.dashboard.three,
-            icon: ICONS.analytics,
+            icon: ICONS.book,
           },
         ],
       },
 
-      // MANAGEMENT
+      // 문제 리스트
       // ----------------------------------------------------------------------
       {
-        subheader: 'management',
+        subheader: 'My ProblemList',
         items: [
           {
-            title: 'user',
+            title: '문제집 목록',
             path: paths.dashboard.group.root,
-            icon: ICONS.user,
+            icon: ICONS.plist,
             children: [
-              { title: 'four', path: paths.dashboard.group.root },
-              { title: 'five', path: paths.dashboard.group.five },
-              { title: 'six', path: paths.dashboard.group.six },
+              { title: '1학년이라면 필수!', path: paths.dashboard.group.root },
+              { title: '23-1 PPS', path: paths.dashboard.group.five },
+              { title: '개인 연습용', path: paths.dashboard.group.six },
             ],
           },
         ],
