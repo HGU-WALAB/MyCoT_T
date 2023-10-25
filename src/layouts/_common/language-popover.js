@@ -17,14 +17,14 @@ export const allLangs = [
     icon: 'flagpack:kr',
   },
   {
-    label: 'French',
-    value: 'fr',
-    icon: 'flagpack:fr',
+    label: 'English',
+    value: 'eng',
+    icon: 'flagpack:us',
   },
   {
-    label: 'Vietnamese',
-    value: 'vi',
-    icon: 'flagpack:vn',
+    label: 'Japanese',
+    value: 'jpn',
+    icon: 'flagpack:jp',
   },
   {
     label: 'Chinese',

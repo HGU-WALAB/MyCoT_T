@@ -8,10 +8,6 @@ import SvgColor from 'src/components/svg-color';
 
 const icon = (name) => (
   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
-  // OR
-  // <Iconify icon="fluent:mail-24-filled" />
-  // https://icon-sets.iconify.design/solar/
-  // https://www.streamlinehq.com/icons
 );
 
 const ICONS = {
@@ -39,23 +35,17 @@ const ICONS = {
   ecommerce: icon('ic_ecommerce'),
   analytics: icon('ic_analytics'),
   dashboard: icon('ic_dashboard'),
-  // 문제집 목록 위한 리스트 아이콘
   plist: icon('plist'),
-  // 유저 메인 화면
   home: icon('home'),
-  // 유저 메인 화면
   book: icon('book'),
-  // 유저 메인 화면
   search: icon('search'),
 };
 
-// ----------------------------------------------------------------------
+const props = ["1학년이라면 필수!","23-2 PPS","개인 연습용","테스트용"];
 
 export function useNavData() {
   const data = useMemo(
     () => [
-      // OVERVIEW
-      // ----------------------------------------------------------------------
       {
         subheader: '이동하기',
         items: [
@@ -68,9 +58,6 @@ export function useNavData() {
           },
         ],
       },
-
-      // 문제 리스트
-      // ----------------------------------------------------------------------
       {
         subheader: 'My ProblemList',
         items: [
@@ -78,11 +65,7 @@ export function useNavData() {
             title: '문제집 목록',
             path: paths.dashboard.group.root,
             icon: ICONS.plist,
-            children: [
-              { title: '1학년이라면 필수!', path: paths.dashboard.group.root },
-              { title: '23-1 PPS', path: paths.dashboard.group.five },
-              { title: '개인 연습용', path: paths.dashboard.group.six },
-            ],
+            children: props.map((prop, index) => ({ title: prop, path: `${paths.dashboard.group.root}/${index + 1}` })),
           },
         ],
       },
