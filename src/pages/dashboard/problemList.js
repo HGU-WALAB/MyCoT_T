@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
+import { palette } from 'src/theme/palette';
 
 const BigBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  // 이게 왜 적용이 안되는거지?
   justify-content: flex-start;
 `
 const PListBox = styled.div`
   justify-content: flex-start;
   width: 200px;
-  background-color: gainsboro;
+  background-color: #FFE7D6;
   border: 1px solid transparent;
   box-shadow: 5px 5px 10px darkgray;
   border-radius: 15px;
@@ -27,7 +27,7 @@ const ListName = styled.div`
 const ProblemList=({problemList})=> (
     <div className="ProblemList">
       <h2>인기 문제 리스트</h2>
-      <h4>{problemList.length}개의 문제 리스트가 있습니다</h4>
+      <h4>{problemList.length} problem lists</h4>
       <BigBox>
         {problemList.map((it, idx)=>(
           <PListBox key={{idx}}>

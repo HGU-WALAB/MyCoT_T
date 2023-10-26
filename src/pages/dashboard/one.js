@@ -5,6 +5,7 @@ import OneView from 'src/sections/one/view';
 import ProblemList from "./problemList"
 import Problem from "./problem"
 import Dropdown from "./dropdown";
+import SwitchView from "./toggle";
 
 // ----------------------------------------------------------------------
 const DropDownSet = styled.div`
@@ -79,6 +80,21 @@ const problem = [
     content: "ABC",
     algorithm: "basic",
   },
+  {
+    id: 4,
+    content: "ABC",
+    algorithm: "basic",
+  },
+  {
+    id: 5,
+    content: "ABC",
+    algorithm: "basic",
+  },
+  {
+    id: 6,
+    content: "ABC",
+    algorithm: "basic",
+  },
 ]
 
 export default function Page() {
@@ -90,6 +106,7 @@ export default function Page() {
       <DropDownSet>
         <Dropdown />
         <Dropdown />
+        <SwitchView />
       </DropDownSet>
       <Problem problem={problem}/>
       <ProblemList problemList={problemList}/>

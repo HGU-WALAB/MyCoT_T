@@ -11,7 +11,7 @@ const PListBox = styled.div`
   color: white;
   justify-content: flex-start;
   width: 250px;
-  background-color: gray;
+  background-color: #B71D18;
   border: 1px solid transparent;
   box-shadow: 5px 5px 10px darkgray;
   border-radius: 15px;
@@ -26,6 +26,9 @@ const StarBox = styled.div`
 const Star = styled.img`
   width: 30px;
   height: 30px;
+  margin-left: 5px;
+  margin-right: 15px;
+  margin-top: 9px;
 `
 const ListName = styled.div`
   font-weight: bolder;
@@ -35,7 +38,7 @@ const ListName = styled.div`
 const Problem=({problem})=> (
   <div className="Problem">
     <h2>인기 문제</h2>
-    <h4>{problem.length}개의 문제 리스트가 있습니다</h4>
+    <h4>{problem.length} problems</h4>
     <BigBox>
       {problem.map((it, idx)=>(
           <PListBox key={{idx}}>
