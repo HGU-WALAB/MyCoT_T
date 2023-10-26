@@ -1,11 +1,19 @@
 import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
 // sections
 import OneView from 'src/sections/one/view';
 import ProblemList from "./problemList"
+import Problem from "./problem"
+import Dropdown from "./dropdown";
 
 // ----------------------------------------------------------------------
+const DropDownSet = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+`
 
-const dummyList = [
+const problemList = [
   {
     id: 1,
     author: "kkim",
@@ -20,39 +28,56 @@ const dummyList = [
   },
   {
     id: 3,
-    author: "cocomong98",
+    author: "user1",
     content: "JAVA",
     emotion: 3,
   },
   {
     id: 4,
-    author: "cocomong98",
+    author: "user2",
     content: "JAVA",
     emotion: 3,
   },
   {
     id: 5,
-    author: "cocomong98",
+    author: "user3",
     content: "JAVA",
     emotion: 3,
   },
   {
     id: 6,
-    author: "cocomong98",
+    author: "user4",
     content: "JAVA",
     emotion: 3,
   },
   {
     id: 7,
-    author: "cocomong98",
+    author: "user5",
     content: "JAVA",
     emotion: 3,
   },
   {
     id: 8,
-    author: "cocomong98",
+    author: "user6",
     content: "JAVA",
     emotion: 3,
+  },
+]
+const problem = [
+  {
+    id: 1,
+    content: "Hanoi's tower",
+    algorithm: "recursion",
+  },
+  {
+    id: 2,
+    content: "Baseball Game",
+    algorithm: "sorting",
+  },
+  {
+    id: 3,
+    content: "ABC",
+    algorithm: "basic",
   },
 ]
 
@@ -62,8 +87,12 @@ export default function Page() {
       <Helmet>
         <title>HOME</title>
       </Helmet>
-
-      <ProblemList problemList={dummyList}/>
+      <DropDownSet>
+        <Dropdown />
+        <Dropdown />
+      </DropDownSet>
+      <Problem problem={problem}/>
+      <ProblemList problemList={problemList}/>
     </>
   );
 }

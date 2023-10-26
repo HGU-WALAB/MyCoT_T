@@ -8,12 +8,13 @@ const BigBox = styled.div`
   justify-content: flex-start;
 `
 const PListBox = styled.div`
+  justify-content: flex-start;
   width: 200px;
   background-color: gainsboro;
   border: 1px solid transparent;
   box-shadow: 5px 5px 10px darkgray;
   border-radius: 15px;
-  margin: 10px auto;
+  margin: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@ const ListName = styled.div`
 
 const ProblemList=({problemList})=> (
     <div className="ProblemList">
-      <h2>문제 리스트</h2>
+      <h2>인기 문제 리스트</h2>
       <h4>{problemList.length}개의 문제 리스트가 있습니다</h4>
       <BigBox>
         {problemList.map((it, idx)=>(
