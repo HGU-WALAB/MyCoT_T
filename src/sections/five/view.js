@@ -13,7 +13,7 @@ export default function FiveView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Page Five </Typography>
+      <Typography variant="h4"> 23-1 PPS </Typography>
 
       <Box
         sx={{

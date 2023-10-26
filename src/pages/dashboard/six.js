@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Six</title>
+        <title>개인 연습용</title>
       </Helmet>
 
       <SixView />

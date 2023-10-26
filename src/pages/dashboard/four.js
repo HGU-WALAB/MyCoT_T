@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Four</title>
+        <title>1학년이라면 필수!</title>
       </Helmet>
 
       <FourView />

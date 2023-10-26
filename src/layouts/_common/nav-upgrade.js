@@ -55,7 +55,7 @@ export default function NavUpgrade() {
         </Stack>
 
         <Button variant="contained" href={paths.minimalUI} target="_blank" rel="noopener">
-          Upgrade to Pro
+          문제집 추가
         </Button>
       </Stack>
     </Stack>

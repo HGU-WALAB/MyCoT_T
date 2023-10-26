@@ -13,7 +13,7 @@ export default function ThreeView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Page Three </Typography>
+      <Typography variant="h4"> 내 문제집 </Typography>
 
       <Box
         sx={{
