@@ -1,12 +1,18 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import { palette } from 'src/theme/palette';
+import DotMenu from "./dotMenu"
 
 const BigBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 `
+
+const RowBox = styled.div`
+  flex-direction: row;
+`
+
 const PListBox = styled.div`
   justify-content: flex-start;
   width: 200px;
@@ -30,11 +36,14 @@ const ProblemList=({problemList})=> (
       <h4>{problemList.length} problem lists</h4>
       <BigBox>
         {problemList.map((it, idx)=>(
-          <PListBox key={{idx}}>
-            <ListName>{it.content}</ListName>
-            <div>made by {it.author}</div>
-            <div>{it.emotion} hits!</div>
-          </PListBox>
+            <PListBox key={idx}>
+                <RowBox>
+                    <ListName>{it.content}</ListName>
+                    <DotMenu />
+                </RowBox>
+                <div>made by {it.author}</div>
+                <div>{it.emotion} hits!</div>
+            </PListBox>
         ))}
       </BigBox>
     </div>

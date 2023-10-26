@@ -6,6 +6,7 @@ import ProblemList from "./problemList"
 import Problem from "./problem"
 import Dropdown from "./dropdown";
 import SwitchView from "./toggle";
+import DotMenu from "./dotMenu"
 
 // ----------------------------------------------------------------------
 const DropDownSet = styled.div`
