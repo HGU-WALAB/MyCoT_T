@@ -44,10 +44,11 @@ const ProblemSet = ({ problemSet }) => (
     <h2>인기 문제 리스트</h2>
     <h4>{problemSet.length} problem sets</h4>
     <BigBox>
-      {problemSet.map((it, idx) => (
+      {problemSet.map((it) => (
 
-        <PListBox key={idx} >
-          <Link to='/dashboard/aboutSet' style={{
+        <PListBox key={it.id} >
+          <Link to={`/dashboard/aboutSet`} state={{id: it.id, content: it.content}}
+            style={{
             textDecoration: "none",
             color: 'inherit'
           }}>
