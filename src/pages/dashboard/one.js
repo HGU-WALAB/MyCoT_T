@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 // sections
 import OneView from 'src/sections/one/view';
-import ProblemList from "./problemList"
+import ProblemSet from "./problemSet"
 import Problem from "./problem"
 import Dropdown from "./dropdown";
 import SwitchView from "./toggle";
@@ -15,7 +15,7 @@ const DropDownSet = styled.div`
   padding: 10px;
 `
 
-const problemList = [
+const problemSet = [
   {
     id: 1,
     author: "kkim",
@@ -110,7 +110,8 @@ export default function Page() {
         <SwitchView />
       </DropDownSet>
       <Problem problem={problem}/>
-      <ProblemList problemList={problemList}/>
+      <ProblemSet problemSet={problemSet}/>
+      <a href="dashboard/two">이동</a>
     </>
   );
 }
