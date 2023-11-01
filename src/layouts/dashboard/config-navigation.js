@@ -41,7 +41,11 @@ const ICONS = {
   search: icon('search'),
 };
 
-const props = ["1학년이라면 필수!","23-2 PPS","개인 연습용","개인적인 공간"];
+const props = [
+  "1학년이라면 필수!",
+  "23-2 PPS",
+  "개인 연습용",
+];
 
 export function useNavData() {
   const data = useMemo(
@@ -50,10 +54,10 @@ export function useNavData() {
         subheader: '이동하기',
         items: [
           { title: '홈', path: paths.dashboard.root, icon: ICONS.home },
-          { title: '탐색', path: paths.dashboard.two, icon: ICONS.search },
+          { title: '탐색', path: paths.dashboard.search, icon: ICONS.search },
           {
             title: '내 문제집',
-            path: paths.dashboard.three,
+            path: paths.dashboard.myList,
             icon: ICONS.book,
           },
         ],
