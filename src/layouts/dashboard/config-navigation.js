@@ -41,7 +41,7 @@ const ICONS = {
   search: icon('search'),
 };
 
-const props = ["1학년이라면 필수!","23-2 PPS","개인 연습용","테스트용"];
+const props = ["1학년이라면 필수!","23-2 PPS","개인 연습용","개인적인 공간"];
 
 export function useNavData() {
   const data = useMemo(
