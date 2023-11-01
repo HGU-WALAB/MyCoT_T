@@ -17,7 +17,7 @@ const Problems = ({ problems }) => {
     }
   };
 
-  
+
   return (
     <div>
       <Box
@@ -38,36 +38,36 @@ const Problems = ({ problems }) => {
       </Box>
       {problems.map((problem) => (
         <Box
-        sx={{
-          width: '95%',
-          height: 25,
-          left: 25,
-          top: 65,
-          backgroundColor: '#FAF9F9',
-          borderRadius: 10,
-          display: 'flex',
-          justifyContent: 'start',
-          alignItems: 'center',
-          padding: '10px',
-          margin: '10px',
-        }} key={problem.problemNumber}>
-      <div className={classes.difficulty}>
-        <img src={require(`./assets/${getDifficultyImage(problem.difficulty)}`)} style={{width: '30px'}}/>
-      </div>
-      <div className={classes.problemNumber}>{problem.problemNumber}</div>
-      <div className={classes.problemName}>{problem.problemName}</div>
-      <div className={classes.problemType}>{problem.problemType}</div>
-      <div className={classes.status}>{problem.status}</div>
-      <div className={classes.site}>{problem.site}</div>
-      <div className={classes.link}>
-        <img src={require('./assets/link.png')} style={{width: '25px'}}/>
-      </div>
-      <div className={classes.delete}>
-        <img src={require('./assets/delete.png')} style={{width: '19px'}}/>
-      </div>
-      </Box>
+          sx={{
+            width: '95%',
+            height: 25,
+            left: 25,
+            top: 65,
+            backgroundColor: '#FAF9F9',
+            borderRadius: 10,
+            display: 'flex',
+            justifyContent: 'start',
+            alignItems: 'center',
+            padding: '10px',
+            margin: '10px',
+          }} key={problem.problemNumber}>
+          <div className={classes.difficulty}>
+            <img src={require(`./assets/${getDifficultyImage(problem.difficulty)}`)} style={{ width: '30px' }} />
+          </div>
+          <div className={classes.problemNumber}>{problem.problemNumber}</div>
+          <div className={classes.problemName}>{problem.problemName}</div>
+          <div className={classes.problemType}>{problem.problemType}</div>
+          <div className={classes.status}>{problem.status}</div>
+          <div className={classes.site}>{problem.site}</div>
+          <div className={classes.link}>
+            <img src={require('./assets/link.png')} style={{ width: '25px' }} />
+          </div>
+          <div className={classes.delete}>
+            <img src={require('./assets/delete.png')} style={{ width: '19px' }} />
+          </div>
+        </Box>
       ))}
-      </div>
+    </div>
   );
 };
 

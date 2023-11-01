@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { palette } from 'src/theme/palette';
 import DotMenu from "./dotMenu"
@@ -39,30 +39,32 @@ const openNewWindow = (clickedItem) => {
 };
 
 
-const ProblemSet=({problemSet})=> (
-    <div className="ProblemSet">
-      <h2>인기 문제 리스트</h2>
-      <h4>{problemSet.length} problem sets</h4>
-      <BigBox>
-        {problemSet.map((it, idx)=>(
+const ProblemSet = ({ problemSet }) => (
+  <div className="ProblemSet">
+    <h2>인기 문제 리스트</h2>
+    <h4>{problemSet.length} problem sets</h4>
+    <BigBox>
+      {problemSet.map((it, idx) => (
+
+        <PListBox key={idx} >
           <Link to='/dashboard/aboutSet' style={{
             textDecoration: "none",
-            color:'inherit'
+            color: 'inherit'
           }}>
-            <PListBox key={idx} >
-                <RowBox>
-                    <ListName>{it.content}</ListName>
-                </RowBox>
-                <div>made by {it.author}</div>
-                <div>{it.emotion} hits!</div>
-            </PListBox>
+            <RowBox>
+              <ListName>{it.content}</ListName>
+            </RowBox>
+            <div>made by {it.author}</div>
+            <div>{it.emotion} hits!</div>
           </Link>
-        ))}
-      </BigBox>
-    </div>
+        </PListBox>
+
+      ))}
+    </BigBox>
+  </div >
 );
 
-ProblemSet.defaultProps={
-  problemSet:[],
+ProblemSet.defaultProps = {
+  problemSet: [],
 };
 export default ProblemSet;

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const BigBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  // 이게 왜 적용이 안되는거지?
   justify-content: flex-start;
 `
 const PListBox = styled.div`
