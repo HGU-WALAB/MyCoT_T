@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { useStyles } from './myProblemListStyles';
 
@@ -16,6 +17,9 @@ const Problems = ({ problems }) => {
         return 'default.png';
     }
   };
+  
+  const location = useLocation();
+  const { id } = location.state || {};
 
 
   return (

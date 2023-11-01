@@ -47,7 +47,7 @@ const ProblemSet = ({ problemSet }) => (
       {problemSet.map((it) => (
 
         <PListBox key={it.id} >
-          <Link to={`/dashboard/aboutSet`} state={{id: it.id, content: it.content}}
+          <Link to={`/dashboard/aboutSet`} state={{id: it.id}}
             style={{
             textDecoration: "none",
             color: 'inherit'

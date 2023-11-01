@@ -1,14 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 // sections
-import OneView from 'src/sections/one/view';
 import ProblemSet from "./problemSet"
 import Problem from "./problem"
 import Dropdown from "./dropdown";
 import SwitchView from "./toggle";
 import DotMenu from "./dotMenu"
 import ProblemList from "./problemList";
+import MyProblemSet from './myProblemSet';
 
 // ----------------------------------------------------------------------
 const DropDownSet = styled.div`
@@ -18,8 +17,6 @@ const DropDownSet = styled.div`
 `
 
 export default function Page() {
-  const location = useLocation();
-  const { id, content } = location.state || {};
 
   return (
     <>
@@ -31,12 +28,7 @@ export default function Page() {
         <Dropdown />
         <SwitchView />
       </DropDownSet>
-    
-        <div>
-          <p>ID: { id }</p>
-          <p>content: { content }</p>
-        </div>
-      
+      <MyProblemSet/>
     </>
   );
 }
