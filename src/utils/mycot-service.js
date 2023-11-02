@@ -22,7 +22,7 @@ class MyCotService {
       JSON.stringify(problemData),
       {
         headers: this.headers,
-        params: JSON.stringify(params),
+        params: params,
       }
     );
     return this.handleResponse(response);
@@ -50,7 +50,7 @@ class MyCotService {
     };
     const response = await axios.get(url, {
       headers: this.headers,
-      params: JSON.stringify(params),
+      params: params,
     });
     return this.handleResponse(response);
   }
@@ -72,7 +72,7 @@ class MyCotService {
     };
     const response = await axios.delete(endpoint, {
       headers: this.headers,
-      params: JSON.stringify(params),
+      params: params,
     });
     return this.handleResponse(response);
   }
@@ -96,7 +96,7 @@ class MyCotService {
     };
     const response = await axios.get(endpoint, {
       headers: this.headers,
-      params: JSON.stringify(params),
+      params: params,
     });
     return this.handleResponse(response);
   }
@@ -118,13 +118,14 @@ class MyCotService {
     };
     const response = await axios.delete(endpoint, {
       headers: this.headers,
-      params: JSON.stringify(params),
+      params: params,
     });
-    return handleResponse(response);
+    return this.handleResponse(response);
   }
 
   
 }
+
 function handleResponse (response) {
     if (response.status === 204) {
       console.log("Successfully hard deleted");
