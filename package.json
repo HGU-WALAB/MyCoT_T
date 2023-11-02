@@ -4,6 +4,7 @@
   "version": "5.5.0",
   "description": "Simple Cra & JavaScript",
   "private": true,
+  "proxy": "https://api.jlstandard.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -122,8 +122,6 @@ class MyCotService {
     });
     return this.handleResponse(response);
   }
-
-  
 }
 
 function handleResponse (response) {
