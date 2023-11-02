@@ -22,6 +22,7 @@ export const paths = {
     one: `${ROOTS.DASHBOARD}/one`,
     search: `${ROOTS.DASHBOARD}/search`,
     myList: `${ROOTS.DASHBOARD}/myList`,
+    addProblem: `${ROOTS.DASHBOARD}/addProblem`,
     aboutSet: `${ROOTS.DASHBOARD}/aboutSet`,
     group: {
       root: `${ROOTS.DASHBOARD}/group`,

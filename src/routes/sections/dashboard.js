@@ -12,6 +12,7 @@ import { LoadingScreen } from 'src/components/loading-screen';
 const IndexPage = lazy(() => import('src/pages/dashboard/one'));
 const SearchPage = lazy(() => import('src/pages/dashboard/search'));
 const MyListPage = lazy(() => import('src/pages/dashboard/myList'));
+const ProblemAdd = lazy(() => import('src/pages/dashboard/addProblem'));
 const PageFour = lazy(() => import('src/pages/dashboard/four'));
 const PageFive = lazy(() => import('src/pages/dashboard/five'));
 const PageSix = lazy(() => import('src/pages/dashboard/six'));
@@ -35,6 +36,7 @@ export const dashboardRoutes = [
       { element: <IndexPage />, index: true },
       { path: 'search', element: <SearchPage /> },
       { path: 'myList', element: <MyListPage /> },
+      { path: 'addProblem', element: <ProblemAdd /> },
       { path: 'aboutSet', element: <AboutSet /> },
       {
         path: 'group',
