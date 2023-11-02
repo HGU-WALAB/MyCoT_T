@@ -18,6 +18,7 @@ import { useTheme } from '@mui/material/styles';
 import { bgBlur } from 'src/theme/css';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
+import MyCotService from 'src/utils/mycot-service';
 
 const Btn = styled.button`
   background-color: ${props => props.theme.palette.primary['Darker']};
@@ -36,6 +37,7 @@ const CURRENCIES = [
 const MyProblemList = () => {
   const theme = useTheme();
   const [currency, setCurrency] = useState('EUR');
+  const apiService = MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
 
   const [values, setValues] = useState({
     title: '',
@@ -60,8 +62,10 @@ const MyProblemList = () => {
     event.preventDefault();
   }, []);
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
+    
     console.log(values); // 먼저 콘솔에 출력
+    await apiService.postProblem(values);
   };
 
   return (
