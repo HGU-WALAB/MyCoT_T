@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const BigBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  // 이게 왜 적용이 안되는거지?
   justify-content: flex-start;
 `
 const PListBox = styled.div`
@@ -40,8 +39,8 @@ const Problem=({problem})=> (
     <h2>인기 문제</h2>
     <h4>{problem.length} problems</h4>
     <BigBox>
-      {problem.map((it, idx)=>(
-          <PListBox key={{idx}}>
+      {problem.map((it)=>(
+          <PListBox key={it.id}>
             <Star src="/assets/images/staricon.png" alt="star" />
             <StarBox>
               <ListName>{it.content}</ListName>
