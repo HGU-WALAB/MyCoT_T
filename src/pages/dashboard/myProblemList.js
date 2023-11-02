@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { useStyles } from './myProblemListStyles';
 
@@ -17,10 +16,6 @@ const Problems = ({ problems }) => {
         return 'default.png';
     }
   };
-  
-  const location = useLocation();
-  const { id } = location.state || {};
-
 
   return (
     <div>
@@ -56,7 +51,7 @@ const Problems = ({ problems }) => {
             margin: '10px',
           }} key={problem.problemNumber}>
           <div className={classes.difficulty}>
-            <img src={require(`./assets/${getDifficultyImage(problem.difficulty)}`)} style={{ width: '30px' }} />
+            <img src={require(`./assets/${getDifficultyImage(problem.difficulty)}`)} style={{ width: '30px' }} alt={`Difficulty ${problem.difficulty}`} />
           </div>
           <div className={classes.problemNumber}>{problem.problemNumber}</div>
           <div className={classes.problemName}>{problem.problemName}</div>
@@ -64,42 +59,38 @@ const Problems = ({ problems }) => {
           <div className={classes.status}>{problem.status}</div>
           <div className={classes.site}>{problem.site}</div>
           <div className={classes.link}>
-            <img src={require('./assets/link.png')} style={{ width: '25px' }} />
+            <a href='https://www.acmicpc.net/problem/1914' target='_blank' rel='noopener noreferrer'>
+              <img src={require('./assets/link.png')} style={{ width: '25px' }} alt='link' />
+            </a>
           </div>
           <div className={classes.delete}>
-            <img src={require('./assets/delete.png')} style={{ width: '19px' }} />
+            <a href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.confirm(`문제를 삭제하시겠습니까?`)) {
+                  alert("삭제완료");
+                }
+              }}>
+              <img src={require('./assets/delete.png')} style={{ width: '19px' }} alt='delete' />
+            </a>
           </div>
         </Box>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 };
 
-const MyProblemList = () => {
-  const sampleProblems = [
-    {
-      difficulty: 1,
-      problemNumber: 1001,
-      problemName: '하노이탑',
-      problemType: '재귀',
-      status: '해결',
-      site: '백준',
-    },
-    {
-      difficulty: 2,
-      problemNumber: 1002,
-      problemName: '피보나치 수열',
-      problemType: '동적 프로그래밍',
-      status: '미해결',
-      site: 'LeetCode',
-    },
-  ];
+const MyProblemList = ({ problemList }) => (
+  <div>
+    <Problems problems={problemList} />
+  </div>
+);
 
-  return (
-    <div>
-      <Problems problems={sampleProblems} />
-    </div>
-  );
+MyProblemList.defaultProps = {
+  problemList: [],
 };
-
+Problems.defaultProps = {
+  problems: [],
+};
 export default MyProblemList;
