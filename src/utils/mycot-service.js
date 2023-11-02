@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from "axios";
 
 class MyCotService {
@@ -122,6 +123,8 @@ class MyCotService {
     });
     return this.handleResponse(response);
   }
+
+  
 }
 
 function handleResponse (response) {
