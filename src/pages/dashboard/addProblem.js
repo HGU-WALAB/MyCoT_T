@@ -64,7 +64,6 @@ const MyProblemList = () => {
   }, []);
 
   const handleConfirm = async () => {
-
     console.log(values); // 먼저 콘솔에 출력
     await apiService.postProblem(values);
   };
