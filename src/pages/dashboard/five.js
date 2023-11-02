@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Five</title>
+        <title>23-1 PPS</title>
       </Helmet>
 
       <FiveView />

@@ -20,8 +20,10 @@ export const paths = {
   dashboard: {
     root: ROOTS.DASHBOARD,
     one: `${ROOTS.DASHBOARD}/one`,
-    two: `${ROOTS.DASHBOARD}/two`,
-    three: `${ROOTS.DASHBOARD}/three`,
+    search: `${ROOTS.DASHBOARD}/search`,
+    myList: `${ROOTS.DASHBOARD}/myList`,
+    addProblem: `${ROOTS.DASHBOARD}/addProblem`,
+    aboutSet: `${ROOTS.DASHBOARD}/aboutSet`,
     group: {
       root: `${ROOTS.DASHBOARD}/group`,
       five: `${ROOTS.DASHBOARD}/group/five`,

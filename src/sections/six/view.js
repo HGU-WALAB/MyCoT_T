@@ -13,7 +13,7 @@ export default function SixView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Page Six </Typography>
+      <Typography variant="h4"> 개인 연습용 </Typography>
 
       <Box
         sx={{

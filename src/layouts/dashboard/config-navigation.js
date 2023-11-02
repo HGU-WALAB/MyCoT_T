@@ -8,10 +8,6 @@ import SvgColor from 'src/components/svg-color';
 
 const icon = (name) => (
   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
-  // OR
-  // <Iconify icon="fluent:mail-24-filled" />
-  // https://icon-sets.iconify.design/solar/
-  // https://www.streamlinehq.com/icons
 );
 
 const ICONS = {
@@ -39,42 +35,38 @@ const ICONS = {
   ecommerce: icon('ic_ecommerce'),
   analytics: icon('ic_analytics'),
   dashboard: icon('ic_dashboard'),
+  plist: icon('plist'),
+  home: icon('home'),
+  book: icon('book'),
+  search: icon('search'),
 };
 
-// ----------------------------------------------------------------------
+const props = [
+  "1학년이라면 필수!",
+  "23-2 PPS",
+  "개인 연습용",
+];
 
 export function useNavData() {
   const data = useMemo(
     () => [
-      // OVERVIEW
-      // ----------------------------------------------------------------------
       {
-        subheader: 'overview v5.5.0',
+        subheader: '이동하기',
         items: [
-          { title: 'one', path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: 'two', path: paths.dashboard.two, icon: ICONS.ecommerce },
-          {
-            title: 'three',
-            path: paths.dashboard.three,
-            icon: ICONS.analytics,
-          },
+          { title: '홈', path: paths.dashboard.root, icon: ICONS.home },
+          { title: '탐색', path: paths.dashboard.search, icon: ICONS.search },
+          { title: '내 문제집', path: paths.dashboard.myList, icon: ICONS.book, },
+          { title: '문제 추가', path: paths.dashboard.addProblem, icon: ICONS.book, },
         ],
       },
-
-      // MANAGEMENT
-      // ----------------------------------------------------------------------
       {
-        subheader: 'management',
+        subheader: 'My ProblemList',
         items: [
           {
-            title: 'user',
+            title: '문제집 목록',
             path: paths.dashboard.group.root,
-            icon: ICONS.user,
-            children: [
-              { title: 'four', path: paths.dashboard.group.root },
-              { title: 'five', path: paths.dashboard.group.five },
-              { title: 'six', path: paths.dashboard.group.six },
-            ],
+            icon: ICONS.plist,
+            children: props.map((prop, index) => ({ title: prop, path: `${paths.dashboard.group.root}/${index + 1}` })),
           },
         ],
       },
