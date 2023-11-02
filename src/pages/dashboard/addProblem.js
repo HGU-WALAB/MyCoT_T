@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import React from 'react';
 import { Box } from '@mui/material';
 import { useStyles } from './myProblemListStyles';
@@ -37,7 +38,7 @@ const CURRENCIES = [
 const MyProblemList = () => {
   const theme = useTheme();
   const [currency, setCurrency] = useState('EUR');
-  const apiService = MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
+  const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
 
   const [values, setValues] = useState({
     title: '',
@@ -63,7 +64,7 @@ const MyProblemList = () => {
   }, []);
 
   const handleConfirm = async () => {
-    
+
     console.log(values); // 먼저 콘솔에 출력
     await apiService.postProblem(values);
   };
