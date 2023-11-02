@@ -55,11 +55,8 @@ export function useNavData() {
         items: [
           { title: '홈', path: paths.dashboard.root, icon: ICONS.home },
           { title: '탐색', path: paths.dashboard.search, icon: ICONS.search },
-          {
-            title: '내 문제집',
-            path: paths.dashboard.myList,
-            icon: ICONS.book,
-          },
+          { title: '내 문제집', path: paths.dashboard.myList, icon: ICONS.book, },
+          { title: '문제 추가', path: paths.dashboard.addProblem, icon: ICONS.book, },
         ],
       },
       {
