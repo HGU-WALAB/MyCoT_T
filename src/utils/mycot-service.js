@@ -26,7 +26,7 @@ class MyCotService {
         params: params,
       }
     );
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET
@@ -53,7 +53,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET {id}
@@ -62,7 +62,7 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // DELETE
@@ -75,7 +75,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // PROBLEM SET API
@@ -85,7 +85,7 @@ class MyCotService {
     const response = await axios.post(endpoint, JSON.stringify(problemSetData), {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET
@@ -99,7 +99,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET {id}
@@ -108,7 +108,7 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // DELETE
@@ -121,7 +121,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   
