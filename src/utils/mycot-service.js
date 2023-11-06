@@ -26,8 +26,9 @@ class MyCotService {
         params: params,
       }
     );
-    return this.handleResponse(response);
+    return this.handleResponse.bind(this)(response);
   }
+  
 
   // GET
   async getProblems({
@@ -124,10 +125,7 @@ class MyCotService {
     return this.handleResponse(response);
   }
 
-  
-}
-
-function handleResponse (response) {
+  handleResponse(response) {
     if (response.status === 204) {
       console.log("Successfully hard deleted");
     } else if (response.status < 400) {
@@ -137,6 +135,19 @@ function handleResponse (response) {
       console.log(`Failed. Status code: ${response.status}`);
       console.log("Response:", response.statusText);
     }
-  }
+  }  
+}
+
+// function handleResponse (response) {
+//     if (response.status === 204) {
+//       console.log("Successfully hard deleted");
+//     } else if (response.status < 400) {
+//       console.log("Successful");
+//       console.log("Response:", JSON.stringify(response.data, null, 4));
+//     } else {
+//       console.log(`Failed. Status code: ${response.status}`);
+//       console.log("Response:", response.statusText);
+//     }
+//   }
 
 export default MyCotService;
