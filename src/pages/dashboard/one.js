@@ -2,11 +2,15 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 // sections
 import OneView from 'src/sections/one/view';
-import ProblemSet from "./problemSet"
-import Problem from "./problem"
+
+import MyCotService from 'src/utils/mycot-service';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Dropdown from "./dropdown";
 import SwitchView from "./toggle";
 import DotMenu from "./dotMenu"
+import Problem from "./problem"
+import ProblemSet from "./problemSet"
 
 // ----------------------------------------------------------------------
 const DropDownSet = styled.div`
@@ -99,6 +103,20 @@ const problem = [
 ]
 
 export default function Page() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
+    axios.get(apiService.getProblemSet(10))
+      .then(response => {
+        console.log(response.data)
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -109,9 +127,9 @@ export default function Page() {
         <Dropdown />
         <SwitchView />
       </DropDownSet>
-      <Problem problem={problem}/>
-      <ProblemSet problemSet={problemSet}/>
-      <a href="dashboard/two">이동</a>
+      <h1>{JSON.stringify(data, null, 2)}</h1>
+      <Problem problem={problem} />
+      <ProblemSet problemSet={problemSet} />
     </>
   );
 }

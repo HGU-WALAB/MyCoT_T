@@ -124,10 +124,7 @@ class MyCotService {
     return this.handleResponse(response);
   }
 
-  
-}
-
-function handleResponse (response) {
+  async handleResponse (response) {
     if (response.status === 204) {
       console.log("Successfully hard deleted");
     } else if (response.status < 400) {
@@ -137,6 +134,9 @@ function handleResponse (response) {
       console.log(`Failed. Status code: ${response.status}`);
       console.log("Response:", response.statusText);
     }
-  }
+  }  
+}
+
+
 
 export default MyCotService;
