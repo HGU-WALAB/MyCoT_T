@@ -104,9 +104,9 @@ const problem = [
 
 export default function Page() {
   const [data, setData] = useState(null);
-
+  const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
   useEffect(() => {
-    const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
+    
     axios.get(apiService.getProblemSet(10))
       .then(response => {
         console.log(response.data)
