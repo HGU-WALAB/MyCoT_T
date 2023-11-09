@@ -135,6 +135,36 @@ class MyCotService {
       console.log("Response:", response.statusText);
     }
   }  
+
+  // 연습용 메서드
+  async getProblemSetEdit(id) {
+    const endpoint = `${this.baseURL}problem-sets/${id}`;
+    const response = await axios.get(endpoint, {
+      headers: this.headers,
+    });
+    return this.handleResponseEdit(response);
+  }
+
+  async getProblemSetsEdit() {
+    const endpoint = `${this.baseURL}problem-sets`;
+    const response = await axios.get(endpoint, {
+      headers: this.headers,
+    });
+    return this.handleResponseEdit(response);
+  }
+
+  async handleResponseEdit (response) {
+    if (response.status === 204) {
+      console.log("Successfully hard deleted");
+    } else if (response.status < 400) {
+      console.log("Successful");
+      console.log("Response:", JSON.stringify(response.data, null, 4));
+    } else {
+      console.log(`Failed. Status code: ${response.status}`);
+      console.log("Response:", response.statusText);
+    }
+    return response;
+  }
 }
 
 

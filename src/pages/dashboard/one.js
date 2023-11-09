@@ -3,9 +3,6 @@ import styled from 'styled-components';
 // sections
 import OneView from 'src/sections/one/view';
 
-import MyCotService from 'src/utils/mycot-service';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Dropdown from "./dropdown";
 import SwitchView from "./toggle";
 import DotMenu from "./dotMenu"
@@ -19,56 +16,56 @@ const DropDownSet = styled.div`
   padding: 10px;
 `
 
-const problemSet = [
-  {
-    id: 1,
-    author: "kkim",
-    content: "미리미리 C캠프",
-    emotion: 1,
-  },
-  {
-    id: 2,
-    author: "jerry1004",
-    content: "웹 서비스 캠프",
-    emotion: 2,
-  },
-  {
-    id: 3,
-    author: "user1",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 4,
-    author: "user2",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 5,
-    author: "user3",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 6,
-    author: "user4",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 7,
-    author: "user5",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 8,
-    author: "user6",
-    content: "JAVA",
-    emotion: 3,
-  },
-]
+// const problemSet = [
+//   {
+//     id: 1,
+//     author: "kkim",
+//     content: "미리미리 C캠프",
+//     emotion: 1,
+//   },
+//   {
+//     id: 2,
+//     author: "jerry1004",
+//     content: "웹 서비스 캠프",
+//     emotion: 2,
+//   },
+//   {
+//     id: 3,
+//     author: "user1",
+//     content: "JAVA",
+//     emotion: 3,
+//   },
+//   {
+//     id: 4,
+//     author: "user2",
+//     content: "JAVA",
+//     emotion: 3,
+//   },
+//   {
+//     id: 5,
+//     author: "user3",
+//     content: "JAVA",
+//     emotion: 3,
+//   },
+//   {
+//     id: 6,
+//     author: "user4",
+//     content: "JAVA",
+//     emotion: 3,
+//   },
+//   {
+//     id: 7,
+//     author: "user5",
+//     content: "JAVA",
+//     emotion: 3,
+//   },
+//   {
+//     id: 8,
+//     author: "user6",
+//     content: "JAVA",
+//     emotion: 3,
+//   },
+// ]
 const problem = [
   {
     id: 1,
@@ -103,20 +100,6 @@ const problem = [
 ]
 
 export default function Page() {
-  const [data, setData] = useState(null);
-  const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
-  useEffect(() => {
-    
-    axios.get(apiService.getProblemSet(10))
-      .then(response => {
-        console.log(response.data)
-        setData(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
   return (
     <>
       <Helmet>
@@ -127,9 +110,8 @@ export default function Page() {
         <Dropdown />
         <SwitchView />
       </DropDownSet>
-      <h1>{JSON.stringify(data, null, 2)}</h1>
       <Problem problem={problem} />
-      <ProblemSet problemSet={problemSet} />
+      <ProblemSet />
     </>
   );
 }
