@@ -10,7 +10,7 @@ const PListBox = styled.div`
   color: white;
   justify-content: flex-start;
   width: 250px;
-  background-color: #B71D18;
+  background-color: #FA5858;
   border: 1px solid transparent;
   box-shadow: 5px 5px 10px darkgray;
   border-radius: 15px;
