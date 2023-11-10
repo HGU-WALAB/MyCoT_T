@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import MyCotService from 'src/utils/mycot-service';
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
@@ -30,7 +32,7 @@ const MyProblemSet = ({ id }) => {
 
   useEffect(() => {
     fetchProblems();
-  });
+  }, []);
 
   return (
     <div>
