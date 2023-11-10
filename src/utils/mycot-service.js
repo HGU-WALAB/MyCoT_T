@@ -39,20 +39,22 @@ class MyCotService {
     rating = null,
     difficulty = null,
   }) {
+    console.log("this.baseURL", this.baseURL);
     const url = `${this.baseURL}problems`;
     const params = {
-      tagIds: tagIds ? tagIds.join(",") : null,
-      getDeleted,
-      problemSetId,
-      platformName,
-      rating,
-      difficulty,
-      title,
+      "tagIds": tagIds ? tagIds.join(",") : null,
+      "getDeleted": getDeleted,
+      "problemSetId": problemSetId,
+      'platformName': platformName,
+      "rating": rating,
+      "difficulty": difficulty,
+      "title": title,
     };
     const response = await axios.get(url, {
       headers: this.headers,
       params: params,
     });
+    console.log("response", response);
     return handleResponse(response);
   }
 

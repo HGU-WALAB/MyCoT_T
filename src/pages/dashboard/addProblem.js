@@ -20,6 +20,7 @@ import { bgBlur } from 'src/theme/css';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import MyCotService from 'src/utils/mycot-service';
+import Dropdown from "./dropdown";
 
 const Btn = styled.button`
   background-color: ${props => props.theme.palette.primary['Darker']};
@@ -64,8 +65,18 @@ const MyProblemList = () => {
   }, []);
 
   const handleConfirm = async () => {
-    console.log(values); // 먼저 콘솔에 출력
-    await apiService.postProblem(values);
+    try {
+      console.log(values); // 먼저 콘솔에 출력
+      await apiService.postProblem(values);
+
+      // 성공 시 알림
+      alert('문제가 성공적으로 추가되었습니다!');
+    } catch (error) {
+      console.error('문제 추가 중 오류 발생:', error);
+
+      // 실패 시 알림
+      alert('문제 추가에 실패했습니다');
+    }
   };
 
   return (
@@ -105,9 +116,10 @@ const MyProblemList = () => {
             onChange={handleChange('difficulty')}
           />
         </Masonry>
+
         {/*확인 버튼 부분*/}
         <Button onClick={handleConfirm}>
-          Confirm
+          추가
         </Button>
       </>
     </ThemeProvider>

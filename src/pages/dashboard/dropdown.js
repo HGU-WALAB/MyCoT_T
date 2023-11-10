@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import styled from "styled-components";
 import { useForm, FormProvider } from 'react-hook-form';
@@ -26,15 +27,17 @@ function Dropdown() {
 
           {/* RHFSelect 사용 예시 */}
           <RHFSelect
-            name="mySelectField"  // 폼 데이터에서 식별할 이름
+            name="dropDownSelected"  // 폼 데이터에서 식별할 이름
             native={false}        // 네이티브 셀렉트 박스 사용 여부
             maxHeight={220}       // 드롭다운 메뉴의 최대 높이
-            helperText="문제 태그 선택" // 도움말 텍스트
+            helperText="Difficulty" // 도움말 텍스트
           >
             {/* 드롭다운 리스트 내부 출력 */}
-            <MenuItem value="option1">JAVA</MenuItem>
-            <MenuItem value="option2">PYTHON</MenuItem>
-            <MenuItem value="option3">C++</MenuItem>
+            <MenuItem value="1">Test</MenuItem>
+            <MenuItem value="2">star1</MenuItem>
+            <MenuItem value="3">star1</MenuItem>
+            <MenuItem value="4">star1</MenuItem>
+            <MenuItem value="5">star1</MenuItem>
           </RHFSelect>
 
         </form>
