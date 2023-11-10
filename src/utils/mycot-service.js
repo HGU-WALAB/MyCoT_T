@@ -26,7 +26,7 @@ class MyCotService {
         params: params,
       }
     );
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET
@@ -53,7 +53,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET {id}
@@ -62,7 +62,7 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // DELETE
@@ -75,7 +75,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // PROBLEM SET API
@@ -85,7 +85,7 @@ class MyCotService {
     const response = await axios.post(endpoint, JSON.stringify(problemSetData), {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET
@@ -99,7 +99,7 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET {id}
@@ -108,7 +108,7 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // DELETE
@@ -121,22 +121,23 @@ class MyCotService {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
-
-
 }
 
 function handleResponse (response) {
+  var data = null;
     if (response.status === 204) {
       console.log("Successfully hard deleted");
     } else if (response.status < 400) {
       console.log("Successful");
       console.log("Response:", JSON.stringify(response.data, null, 4));
+      data = response.data;
     } else {
       console.log(`Failed. Status code: ${response.status}`);
       console.log("Response:", response.statusText);
     }
+    return data;
   }
 
 export default MyCotService;

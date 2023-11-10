@@ -24,6 +24,7 @@ import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
+
 // ----------------------------------------------------------------------
 
 export default function JwtRegisterView() {

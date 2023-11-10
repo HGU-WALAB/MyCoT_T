@@ -2,9 +2,16 @@ import PropTypes from 'prop-types';
 import { useEffect, useReducer, useCallback, useMemo } from 'react';
 // utils
 import axios, { endpoints } from 'src/utils/axios';
+
+// firebase auth
+import {  signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile   } from 'firebase/auth';
+import auth from 'src/utils/firebase/auth';
+
 //
 import { AuthContext } from './auth-context';
 import { isValidToken, setSession } from './utils';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -60,7 +67,7 @@ export function AuthProvider({ children }) {
 
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
-
+        
         const response = await axios.get(endpoints.auth.me);
 
         const { user } = response.data;
@@ -99,14 +106,12 @@ export function AuthProvider({ children }) {
 
   // LOGIN
   const login = useCallback(async (email, password) => {
-    const data = {
-      email,
-      password,
-    };
 
-    const response = await axios.post(endpoints.auth.login, data);
+    // const response = await axios.post(endpoints.auth.login, data);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
-    const { accessToken, user } = response.data;
+    const accessToken = userCredential.user.getIdToken();
+    const user = userCredential.user;
 
     setSession(accessToken);
 
@@ -130,9 +135,14 @@ export function AuthProvider({ children }) {
       lastName,
     };
 
-    const response = await axios.post(endpoints.auth.register, data);
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
 
-    const { accessToken, user } = response.data;
+    const user = userCredential.user;
+    const accessToken = user.getIdToken();
+
+    await updateProfile(user, {
+      displayName: `${data.firstName} ${data.lastName}`,
+    });
 
     sessionStorage.setItem(STORAGE_KEY, accessToken);
 
