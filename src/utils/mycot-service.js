@@ -128,15 +128,18 @@ class MyCotService {
 }
 
 function handleResponse (response) {
+  var data = null;
     if (response.status === 204) {
       console.log("Successfully hard deleted");
     } else if (response.status < 400) {
       console.log("Successful");
       console.log("Response:", JSON.stringify(response.data, null, 4));
+      data = response.data;
     } else {
       console.log(`Failed. Status code: ${response.status}`);
       console.log("Response:", response.statusText);
     }
+    return data;
   }
 
 export default MyCotService;
