@@ -108,9 +108,8 @@ export default function Page() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await apiService.getProblems();
+        const response = await apiService.getProblems({});
         setProblems(response);
-        console.error('가져오기 성공!');
       } catch (error) {
         console.error('가져오기 실패', error);
       }
