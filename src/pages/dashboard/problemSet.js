@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import MyCotService from 'src/utils/mycot-service';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { palette } from 'src/theme/palette';
 import DotMenu from "./dotMenu"
 
@@ -50,11 +49,11 @@ const ProblemSetList = ({ problemSet }) => (
       {problemSet.map((it) => (
 
         <PListBox key={it.id} >
-          <Link to={`/dashboard/aboutSet`} state={{id: it.id}}
+          <Link to={`/dashboard/aboutSet`} state={{ id: it.id }}
             style={{
-            textDecoration: "none",
-            color: 'inherit'
-          }}>
+              textDecoration: "none",
+              color: 'inherit'
+            }}>
             <RowBox>
               <ListName>{it.title}</ListName>
             </RowBox>
@@ -69,14 +68,18 @@ const ProblemSetList = ({ problemSet }) => (
 );
 
 const ProblemSet = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
+  const apiService = new MyCotService();
+
+  const fetchProblemSets = async () => {
+    const fetchedData = await apiService.getProblemSets({});
+    setData(fetchedData);
+  }
 
   useEffect(() => {
-    const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
-    apiService.getProblemSetsEdit()
-      .then(response => setData(response.data))
-      .catch(error => { console.error('Error fetching data:', error); });
+    fetchProblemSets();
   }, []);
+
   let sortedData = [];
   if (data !== null) {
     sortedData = [...data].sort((a, b) => b.savedCnt - a.savedCnt);

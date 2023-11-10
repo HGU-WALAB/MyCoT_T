@@ -17,7 +17,7 @@ const Problems = ({ problems }) => {
         return 'default.png';
     }
   };
-
+  
   return (
     <div>
       <Box
@@ -28,12 +28,12 @@ const Problems = ({ problems }) => {
           margin: '10px',
         }}>
         <div className={classes.difficulty}>난이도</div>
-        <div className={classes.problemNumber}>문제번호</div>
-        <div className={classes.problemName}>문제이름</div>
-        <div className={classes.problemType}>문제유형</div>
-        <div className={classes.status}>상태</div>
+        <div className={classes.id}>문제번호</div>
+        <div className={classes.title}>문제이름</div>
+        <div className={classes.savedCnt}>문제유형</div>
+        <div className={classes.likedCnt}>상태</div>
         <div className={classes.site}>사이트</div>
-        <div className={classes.link}>문제풀기</div>
+        <div className={classes.problemLink}>문제풀기</div>
         <div className={classes.delete}>삭제</div>
       </Box>
       {problems.map((problem) => (
@@ -50,18 +50,18 @@ const Problems = ({ problems }) => {
             alignItems: 'center',
             padding: '10px',
             margin: '10px',
-          }} key={problem.problemNumber}>
+          }} key={problem.id}>
           <div className={classes.difficulty}>
             <img src={require(`./assets/${getDifficultyImage(problem.difficulty)}`)} style={{ width: '30px' }} alt={`Difficulty ${problem.difficulty}`} />
           </div>
-          <div className={classes.problemNumber}>{problem.problemNumber}</div>
-          <div className={classes.problemName}>{problem.problemName}</div>
-          <div className={classes.problemType}>{problem.problemType}</div>
-          <div className={classes.status}>{problem.status}</div>
-          <div className={classes.site}>{problem.site}</div>
-          <div className={classes.link}>
+          <div className={classes.id}>{problem.id}</div>
+          <div className={classes.title}>{problem.title}</div>
+          <div className={classes.savedCnt}>{problem.savedCnt}</div>
+          <div className={classes.likedCnt}>{problem.likedCnt}</div>
+          <div className={classes.site}>{problem.platform ? problem.platform.name : ''}</div>
+          <div className={classes.problemLink}>
             <a href='https://www.acmicpc.net/problem/1914' target='_blank' rel='noopener noreferrer'>
-              <img src={require('./assets/link.png')} style={{ width: '25px' }} alt='link' />
+              <img src={require('./assets/link.png')} style={{ width: '25px' }} alt='problemLink' />
             </a>
           </div>
           <div className={classes.delete}>
@@ -88,10 +88,4 @@ const MyProblemList = ({ problemList }) => (
   </div>
 );
 
-MyProblemList.defaultProps = {
-  problemList: [],
-};
-Problems.defaultProps = {
-  problems: [],
-};
 export default MyProblemList;

@@ -2,8 +2,8 @@
 import axios from "axios";
 
 class MyCotService {
-  constructor(baseURL) {
-    this.baseURL = baseURL;
+  constructor() {
+    this.baseURL = process.env.REACT_APP_MYCOT_HOST_API;
     this.token = null; // Initialize the token as null
     this.headers = {
       "Content-Type": "application/json",
@@ -91,9 +91,10 @@ class MyCotService {
   // GET
   async getProblemSets({ tagIds = null, getDeleted = false }) {
     const endpoint = `${this.baseURL}problem-sets`;
+    console.log("this.baseURL", this.baseURL);
     const params = {
       tagIds: tagIds ? tagIds.join(",") : null,
-      getDeleted,
+      "getDeleted": getDeleted,
     };
     const response = await axios.get(endpoint, {
       headers: this.headers,
@@ -125,45 +126,18 @@ class MyCotService {
   }
 
   async handleResponse (response) {
+    var data = null;
     if (response.status === 204) {
       console.log("Successfully hard deleted");
     } else if (response.status < 400) {
       console.log("Successful");
       console.log("Response:", JSON.stringify(response.data, null, 4));
+      data = response.data;
     } else {
       console.log(`Failed. Status code: ${response.status}`);
       console.log("Response:", response.statusText);
     }
-  }  
-
-  // 연습용 메서드
-  async getProblemSetEdit(id) {
-    const endpoint = `${this.baseURL}problem-sets/${id}`;
-    const response = await axios.get(endpoint, {
-      headers: this.headers,
-    });
-    return this.handleResponseEdit(response);
-  }
-
-  async getProblemSetsEdit() {
-    const endpoint = `${this.baseURL}problem-sets`;
-    const response = await axios.get(endpoint, {
-      headers: this.headers,
-    });
-    return this.handleResponseEdit(response);
-  }
-
-  async handleResponseEdit (response) {
-    if (response.status === 204) {
-      console.log("Successfully hard deleted");
-    } else if (response.status < 400) {
-      console.log("Successful");
-      console.log("Response:", JSON.stringify(response.data, null, 4));
-    } else {
-      console.log(`Failed. Status code: ${response.status}`);
-      console.log("Response:", response.statusText);
-    }
-    return response;
+    return data;
   }
 }
 
