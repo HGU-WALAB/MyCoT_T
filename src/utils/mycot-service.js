@@ -9,7 +9,11 @@ class MyCotService {
     this.headers = {
       "Content-Type": "application/json",
     };
+    axios.defaults.paramsSerializer = params => {
+      return qs.stringify(params);
+    }
   }
+  
 
   // PROBLEM API
   // POST
@@ -49,10 +53,8 @@ class MyCotService {
     const response = await axios.get(url, {
       headers: this.headers,
       params: params,
-      paramsSerializer: params => {
-        return qs.stringify(params)
-      }
     });
+    console.log("response", response);
     return handleResponse(response);
   }
 
@@ -98,9 +100,6 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
       params: params,
-      paramsSerializer: params => {
-        return qs.stringify(params)
-      }
     });
     return handleResponse(response);
   }
