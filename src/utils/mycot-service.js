@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from "axios";
+import qs from "qs";
 
 class MyCotService {
   constructor(baseURL) {
@@ -14,16 +15,12 @@ class MyCotService {
   // POST
   async postProblem(problemData, tagNames = null) {
     const endpoint = `${this.baseURL}problems`;
-    const params = {};
-    if (tagNames) {
-      params['tagNames'] = tagNames;
-    }
+    problemData['tagNames'] = tagNames;
     const response = await axios.post(
       endpoint,
       JSON.stringify(problemData),
       {
         headers: this.headers,
-        params: params,
       }
     );
     return handleResponse(response);
@@ -41,17 +38,20 @@ class MyCotService {
   }) {
     const url = `${this.baseURL}problems`;
     const params = {
-      tagIds: tagIds ? tagIds.join(",") : null,
-      getDeleted,
-      problemSetId,
-      platformName,
-      rating,
-      difficulty,
-      title,
+      tagIds: tagIds,
+      getDeleted: getDeleted,
+      problemSetId: problemSetId,
+      platformName: platformName,
+      rating: rating,
+      difficulty: difficulty,
+      title: title,
     };
     const response = await axios.get(url, {
       headers: this.headers,
       params: params,
+      paramsSerializer: params => {
+        return qs.stringify(params)
+      }
     });
     return handleResponse(response);
   }
@@ -69,7 +69,7 @@ class MyCotService {
   async deleteProblem(id, soft = true) {
     const endpoint = `${this.baseURL}problems/${id}`;
     const params = {
-      soft,
+      soft: soft,
     };
     const response = await axios.delete(endpoint, {
       headers: this.headers,
@@ -92,12 +92,15 @@ class MyCotService {
   async getProblemSets({ tagIds = null, getDeleted = false }) {
     const endpoint = `${this.baseURL}problem-sets`;
     const params = {
-      tagIds: tagIds ? tagIds.join(",") : null,
-      getDeleted,
+      tagIds: tagIds,
+      getDeleted: getDeleted,
     };
     const response = await axios.get(endpoint, {
       headers: this.headers,
       params: params,
+      paramsSerializer: params => {
+        return qs.stringify(params)
+      }
     });
     return handleResponse(response);
   }
@@ -115,7 +118,7 @@ class MyCotService {
   async deleteProblemSet(id, soft = true) {
     const endpoint = `${this.baseURL}problem-sets/${id}`;
     const params = {
-      soft,
+      soft: soft,
     };
     const response = await axios.delete(endpoint, {
       headers: this.headers,
