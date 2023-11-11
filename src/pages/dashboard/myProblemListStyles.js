@@ -9,22 +9,22 @@ export const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  problemNumber:{
+  id:{
     display: 'inline-block',
     textAlign: 'center',
     width: '120px'
   },
-  problemName:{
+  title:{
     display: 'inline-block',
     textAlign: 'center',
     width: '250px'
   },
-  problemType:{
+  savedCnt:{
     display: 'inline-block',
     textAlign: 'center',
     width: '250px'
   },
-  status:{
+  likedCnt:{
     display: 'inline-block',
     textAlign: 'center',
     width: '120px'
@@ -34,7 +34,7 @@ export const useStyles = makeStyles({
     textAlign: 'center',
     width: '120px'
   },
-  link:{
+  problemLink:{
     display: 'inline-block',
     textAlign: 'center',
     width: '100px'

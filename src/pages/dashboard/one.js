@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MyCotService from 'src/utils/mycot-service';
 // sections
-import ProblemSet from "./problemSet"
-import Problem from "./problem"
+import OneView from 'src/sections/one/view';
+
 import Dropdown from "./dropdown";
 import SwitchView from "./toggle";
+import DotMenu from "./dotMenu"
+import Problem from "./problem"
+import ProblemSet from "./problemSet"
 
 // ----------------------------------------------------------------------
 const DropDownSet = styled.div`
@@ -15,56 +18,6 @@ const DropDownSet = styled.div`
   padding: 10px;
 `
 
-const problemSet = [
-  {
-    id: 1,
-    author: "kkim",
-    content: "미리미리 C캠프",
-    emotion: 1,
-  },
-  {
-    id: 2,
-    author: "jerry1004",
-    content: "웹 서비스 캠프",
-    emotion: 2,
-  },
-  {
-    id: 3,
-    author: "user1",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 4,
-    author: "user2",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 5,
-    author: "user3",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 6,
-    author: "user4",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 7,
-    author: "user5",
-    content: "JAVA",
-    emotion: 3,
-  },
-  {
-    id: 8,
-    author: "user6",
-    content: "JAVA",
-    emotion: 3,
-  },
-]
 const problem = [
   {
     id: 1,
@@ -127,7 +80,7 @@ export default function Page() {
         <SwitchView />
       </DropDownSet>
       <Problem problem={problems}/>
-      <ProblemSet problemSet={problemSet}/>
+      <ProblemSet />
       <a href="dashboard/two">이동</a>
     </>
   );

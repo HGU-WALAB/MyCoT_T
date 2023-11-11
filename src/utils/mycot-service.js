@@ -3,8 +3,8 @@ import axios from "axios";
 import qs from "qs";
 
 class MyCotService {
-  constructor(baseURL) {
-    this.baseURL = baseURL;
+  constructor() {
+    this.baseURL = process.env.REACT_APP_MYCOT_HOST_API;
     this.token = null; // Initialize the token as null
     this.headers = {
       "Content-Type": "application/json",
@@ -93,6 +93,7 @@ class MyCotService {
   // GET
   async getProblemSets({ tagIds = null, getDeleted = false }) {
     const endpoint = `${this.baseURL}problem-sets`;
+    console.log("this.baseURL", this.baseURL);
     const params = {
       tagIds: tagIds,
       getDeleted: getDeleted,
@@ -125,8 +126,6 @@ class MyCotService {
     });
     return handleResponse(response);
   }
-}
-
 function handleResponse (response) {
   var data = null;
     if (response.status === 204) {
@@ -141,5 +140,8 @@ function handleResponse (response) {
     }
     return data;
   }
+}
+
+
 
 export default MyCotService;

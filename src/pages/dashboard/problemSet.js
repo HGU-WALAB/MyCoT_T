@@ -3,6 +3,8 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
+import MyCotService from 'src/utils/mycot-service';
+import { useState, useEffect } from 'react';
 import { palette } from 'src/theme/palette';
 import DotMenu from "./dotMenu"
 
@@ -39,7 +41,7 @@ const openNewWindow = (clickedItem) => {
 };
 
 
-const ProblemSet = ({ problemSet }) => (
+const ProblemSetList = ({ problemSet }) => (
   <div className="ProblemSet">
     <h2>인기 문제 리스트</h2>
     <h4>{problemSet.length} problem sets</h4>
@@ -47,16 +49,16 @@ const ProblemSet = ({ problemSet }) => (
       {problemSet.map((it) => (
 
         <PListBox key={it.id} >
-          <Link to={`/dashboard/aboutSet`} state={{id: it.id}}
+          <Link to={`/dashboard/aboutSet`} state={{ id: it.id }}
             style={{
-            textDecoration: "none",
-            color: 'inherit'
-          }}>
+              textDecoration: "none",
+              color: 'inherit'
+            }}>
             <RowBox>
-              <ListName>{it.content}</ListName>
+              <ListName>{it.title}</ListName>
             </RowBox>
-            <div>made by {it.author}</div>
-            <div>{it.emotion} hits!</div>
+            <div>made by {it.creator}</div>
+            <div>{it.savedCnt} hits!</div>
           </Link>
         </PListBox>
 
@@ -65,7 +67,28 @@ const ProblemSet = ({ problemSet }) => (
   </div >
 );
 
-ProblemSet.defaultProps = {
-  problemSet: [],
-};
+const ProblemSet = () => {
+  const [data, setData] = useState([]);
+  const apiService = new MyCotService();
+
+  const fetchProblemSets = async () => {
+    const fetchedData = await apiService.getProblemSets({});
+    setData(fetchedData);
+  }
+
+  useEffect(() => {
+    fetchProblemSets();
+  }, []);
+
+  let sortedData = [];
+  if (data !== null) {
+    sortedData = [...data].sort((a, b) => b.savedCnt - a.savedCnt);
+  }
+  const topEight = sortedData.slice(0, 8);
+
+  return (
+    <ProblemSetList problemSet={topEight} />
+  )
+}
+
 export default ProblemSet;

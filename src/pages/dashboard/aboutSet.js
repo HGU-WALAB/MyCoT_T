@@ -73,7 +73,7 @@ export default function Page() {
             paddingRight: 4,
           }}
         >
-          <MyProblemSet problemList={sampleProblems}/>
+          <MyProblemSet problemList={id}/>
         </Box>
       </Container>
     </>
