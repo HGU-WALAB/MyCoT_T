@@ -34,26 +34,26 @@ const ListName = styled.div`
   font-size: large;
 `
 
-const Problem=({problem})=> (
+const Problem = ({ problem }) => (
   <div className="Problem">
     <h2>인기 문제</h2>
     <h4>{problem.length} problems</h4>
     <BigBox>
-      {problem.map((it)=>(
-          <PListBox key={it.id}>
-            <Star src="/assets/images/staricon.png" alt="star" />
-            <StarBox>
-              <ListName>{it.content}</ListName>
-              <div>{it.algorithm}</div>
-            </StarBox>
-
-          </PListBox>
+      {problem.map((it) => (
+        <PListBox key={it.id}>
+          <Star src="/assets/images/staricon.png" alt="star" />
+          <StarBox>
+            <ListName>{it.title}</ListName>
+            <div>Saved: {it.savedCnt}</div>
+          </StarBox>
+        </PListBox>
       ))}
     </BigBox>
   </div>
 );
 
-Problem.defaultProps={
-  problem:[],
+Problem.defaultProps = {
+  problem: [],
 };
+
 export default Problem;

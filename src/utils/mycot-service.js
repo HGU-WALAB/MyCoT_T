@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from "axios";
+import qs from "qs";
 
 class MyCotService {
   constructor() {
@@ -8,25 +9,25 @@ class MyCotService {
     this.headers = {
       "Content-Type": "application/json",
     };
+    axios.defaults.paramsSerializer = params => {
+      return qs.stringify(params);
+    }
   }
+  
 
   // PROBLEM API
   // POST
   async postProblem(problemData, tagNames = null) {
     const endpoint = `${this.baseURL}problems`;
-    const params = {};
-    if (tagNames) {
-      params['tagNames'] = tagNames;
-    }
+    problemData['tagNames'] = tagNames;
     const response = await axios.post(
       endpoint,
       JSON.stringify(problemData),
       {
         headers: this.headers,
-        params: params,
       }
     );
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET
@@ -41,19 +42,20 @@ class MyCotService {
   }) {
     const url = `${this.baseURL}problems`;
     const params = {
-      tagIds: tagIds ? tagIds.join(",") : null,
-      getDeleted,
-      problemSetId,
-      platformName,
-      rating,
-      difficulty,
-      title,
+      tagIds: tagIds,
+      getDeleted: getDeleted,
+      problemSetId: problemSetId,
+      platformName: platformName,
+      rating: rating,
+      difficulty: difficulty,
+      title: title,
     };
     const response = await axios.get(url, {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    console.log("response", response);
+    return handleResponse(response);
   }
 
   // GET {id}
@@ -62,20 +64,20 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // DELETE
   async deleteProblem(id, soft = true) {
     const endpoint = `${this.baseURL}problems/${id}`;
     const params = {
-      soft,
+      soft: soft,
     };
     const response = await axios.delete(endpoint, {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // PROBLEM SET API
@@ -85,7 +87,7 @@ class MyCotService {
     const response = await axios.post(endpoint, JSON.stringify(problemSetData), {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET
@@ -93,14 +95,14 @@ class MyCotService {
     const endpoint = `${this.baseURL}problem-sets`;
     console.log("this.baseURL", this.baseURL);
     const params = {
-      tagIds: tagIds ? tagIds.join(",") : null,
-      "getDeleted": getDeleted,
+      tagIds: tagIds,
+      getDeleted: getDeleted,
     };
     const response = await axios.get(endpoint, {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // GET {id}
@@ -109,24 +111,23 @@ class MyCotService {
     const response = await axios.get(endpoint, {
       headers: this.headers,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
 
   // DELETE
   async deleteProblemSet(id, soft = true) {
     const endpoint = `${this.baseURL}problem-sets/${id}`;
     const params = {
-      soft,
+      soft: soft,
     };
     const response = await axios.delete(endpoint, {
       headers: this.headers,
       params: params,
     });
-    return this.handleResponse(response);
+    return handleResponse(response);
   }
-
-  async handleResponse (response) {
-    var data = null;
+function handleResponse (response) {
+  var data = null;
     if (response.status === 204) {
       console.log("Successfully hard deleted");
     } else if (response.status < 400) {
