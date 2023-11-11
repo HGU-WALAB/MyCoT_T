@@ -18,38 +18,6 @@ const DropDownSet = styled.div`
   padding: 10px;
 `
 
-const problem = [
-  {
-    id: 1,
-    content: "Hanoi's tower",
-    algorithm: "recursion",
-  },
-  {
-    id: 2,
-    content: "Baseball Game",
-    algorithm: "sorting",
-  },
-  {
-    id: 3,
-    content: "ABC",
-    algorithm: "basic",
-  },
-  {
-    id: 4,
-    content: "ABC",
-    algorithm: "basic",
-  },
-  {
-    id: 5,
-    content: "ABC",
-    algorithm: "basic",
-  },
-  {
-    id: 6,
-    content: "ABC",
-    algorithm: "basic",
-  },
-]
 
 const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
 

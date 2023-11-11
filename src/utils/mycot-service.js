@@ -126,6 +126,8 @@ class MyCotService {
     });
     return handleResponse(response);
   }
+}
+
 function handleResponse (response) {
   var data = null;
     if (response.status === 204) {
@@ -140,8 +142,6 @@ function handleResponse (response) {
     }
     return data;
   }
-}
-
 
 
 export default MyCotService;
