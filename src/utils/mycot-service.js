@@ -140,9 +140,9 @@ function handleResponse(response) {
     console.log(`Failed. Status code: ${response.status}`);
     console.log("Response:", response.statusText);
   }
+
   return data;
 }
-
 
 
 export default MyCotService;
