@@ -17,6 +17,7 @@ const Problems = ({ problems }) => {
         return 'default.png';
     }
   };
+  console.log("problems", problems);
   
   return (
     <div>
@@ -60,7 +61,7 @@ const Problems = ({ problems }) => {
           <div className={classes.likedCnt}>{problem.likedCnt}</div>
           <div className={classes.site}>{problem.platform ? problem.platform.name : ''}</div>
           <div className={classes.problemLink}>
-            <a href='https://www.acmicpc.net/problem/1914' target='_blank' rel='noopener noreferrer'>
+            <a href={problem.problemLink} target='_blank' rel='noopener noreferrer'>
               <img src={require('./assets/link.png')} style={{ width: '25px' }} alt='problemLink' />
             </a>
           </div>
