@@ -1,9 +1,11 @@
 /* eslint-disable */
 import React from 'react';
+import MyCotService from 'src/utils/mycot-service';
+import { useState } from 'react';
 import { Box } from '@mui/material';
 import { useStyles } from './myProblemListStyles';
 
-const Problems = ({ problems }) => {
+const Problems = ({ problems, onDeleteProblem }) => {
   const classes = useStyles();
   const getDifficultyImage = (difficulty) => {
     switch (difficulty) {
@@ -17,8 +19,7 @@ const Problems = ({ problems }) => {
         return 'default.png';
     }
   };
-  console.log("problems", problems);
-  
+
   return (
     <div>
       <Box
@@ -70,6 +71,7 @@ const Problems = ({ problems }) => {
               onClick={(e) => {
                 e.preventDefault();
                 if (window.confirm(`문제를 삭제하시겠습니까?`)) {
+                  onDeleteProblem(problem.id);
                   alert("삭제완료");
                 }
               }}>
@@ -83,10 +85,20 @@ const Problems = ({ problems }) => {
   );
 };
 
-const MyProblemList = ({ problemList }) => (
-  <div>
-    <Problems problems={problemList} />
-  </div>
-);
+const MyProblemList = ({ problemList, refreshProblems }) => {
+  const apiService = new MyCotService();
+  const handleDeleteProblem = async (id) => {
+      await apiService.deleteProblem(id);
+      refreshProblems();
+  };
+  return (
+    <div>
+      <Problems
+        problems={problemList}
+        onDeleteProblem={handleDeleteProblem}
+      />
+    </div>
+  )
+};
 
 export default MyProblemList;

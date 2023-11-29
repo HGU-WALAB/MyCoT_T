@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import MyProblemList from './myProblemList';
 
-const MyProblemSetList = ({ problemList }) => (
+const MyProblemSetList = ({ problemList, refreshProblems }) => (
   <Box
     sx={{
       mt: 5,
@@ -17,7 +17,7 @@ const MyProblemSetList = ({ problemList }) => (
       paddingTop: 4,
       paddingLeft: 4,
     }}>
-    <MyProblemList problemList={problemList} />
+    <MyProblemList problemList={problemList} refreshProblems={refreshProblems} />
   </Box>
 );
 
@@ -38,7 +38,7 @@ const MyProblemSet = ({ id }) => {
     <div>
       <h1 style={{ display: "inline" }}>1학년 추천 </h1><h3 style={{ display: "inline" }}>made by mango</h3>
       <p><h2 style={{ display: "inline" }}>80문제| </h2><h4 style={{ display: "inline" }}>56hits!</h4></p>
-      <MyProblemSetList problemList={problems} />
+      <MyProblemSetList problemList={problems} refreshProblems={fetchProblems} />
     </div>
   )
 }
