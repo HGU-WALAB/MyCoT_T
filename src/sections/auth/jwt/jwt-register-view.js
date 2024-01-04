@@ -41,15 +41,13 @@ export default function JwtRegisterView() {
   const password = useBoolean();
 
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string().required('First name required'),
-    lastName: Yup.string().required('Last name required'),
+    displayName: Yup.string().required('display name required'),
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
     password: Yup.string().required('Password is required'),
   });
 
   const defaultValues = {
-    firstName: '',
-    lastName: '',
+    displayName: '',
     email: '',
     password: '',
   };
@@ -67,7 +65,7 @@ export default function JwtRegisterView() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await register?.(data.email, data.password, data.firstName, data.lastName);
+      await register?.(data.email, data.password, data.displayName);
 
       router.push(returnTo || PATH_AFTER_LOGIN);
     } catch (error) {
@@ -118,11 +116,7 @@ export default function JwtRegisterView() {
       <Stack spacing={2.5}>
         {!!errorMsg && <Alert severity="error">{errorMsg}</Alert>}
 
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <RHFTextField name="firstName" label="First name" />
-          <RHFTextField name="lastName" label="Last name" />
-        </Stack>
-
+        <RHFTextField name="displayName" label="Display name" />
         <RHFTextField name="email" label="Email address" />
 
         <RHFTextField

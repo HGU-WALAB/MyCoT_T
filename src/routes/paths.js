@@ -19,8 +19,7 @@ export const paths = {
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,
-    one: `${ROOTS.DASHBOARD}/one`,
-    search: `${ROOTS.DASHBOARD}/search`,
+    problemSet: `${ROOTS.DASHBOARD}/problem-sets`,
     myList: `${ROOTS.DASHBOARD}/myList`,
     addProblem: `${ROOTS.DASHBOARD}/addProblem`,
     aboutSet: `${ROOTS.DASHBOARD}/aboutSet`,

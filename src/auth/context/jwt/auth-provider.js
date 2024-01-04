@@ -10,7 +10,7 @@ import auth from 'src/utils/firebase/auth';
 //
 import { AuthContext } from './auth-context';
 import { isValidToken, setSession } from './utils';
-
+import myCotService from 'src/utils/mycot-service';
 
 
 // ----------------------------------------------------------------------
@@ -65,12 +65,12 @@ export function AuthProvider({ children }) {
     try {
       const accessToken = sessionStorage.getItem(STORAGE_KEY);
 
-      if (accessToken && isValidToken(accessToken)) {
-        setSession(accessToken);
-        
-        const response = await axios.get(endpoints.auth.me);
+      const loginRes = await myCotService.login(accessToken); 
 
-        const { user } = response.data;
+      if (accessToken && isValidToken(accessToken) && loginRes) {
+        setSession(accessToken);
+
+        const { user } = loginRes;
 
         dispatch({
           type: 'INITIAL',
@@ -108,10 +108,16 @@ export function AuthProvider({ children }) {
   const login = useCallback(async (email, password) => {
 
     // const response = await axios.post(endpoints.auth.login, data);
+    console.log("email", email);
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
-    const accessToken = userCredential.user.getIdToken();
+    console.log("userCredential", userCredential);
+    const accessToken = await userCredential.user.getIdToken();
     const user = userCredential.user;
+
+    const loginRes = await myCotService.login(accessToken);
+    
+    if(loginRes === null) return;
 
     setSession(accessToken);
 
@@ -127,22 +133,25 @@ export function AuthProvider({ children }) {
   }, []);
 
   // REGISTER
-  const register = useCallback(async (email, password, firstName, lastName) => {
+  const register = useCallback(async (email, password, displayName) => {
     const data = {
       email,
       password,
-      firstName,
-      lastName,
+      displayName,
     };
 
     const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
 
     const user = userCredential.user;
-    const accessToken = user.getIdToken();
+    const accessToken = await user.getIdToken();
 
     await updateProfile(user, {
-      displayName: `${data.firstName} ${data.lastName}`,
+      displayName: displayName,
     });
+
+    const registerRes = await myCotService.register(accessToken);
+
+    if(registerRes === null) return;
 
     sessionStorage.setItem(STORAGE_KEY, accessToken);
 

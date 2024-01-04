@@ -6,17 +6,19 @@ import { AuthGuard } from 'src/auth/guard';
 import DashboardLayout from 'src/layouts/dashboard';
 // components
 import { LoadingScreen } from 'src/components/loading-screen';
+import { ProblemSetDetail } from 'src/pages/problem/problemSetDetail';
 
 // ----------------------------------------------------------------------
 
-const IndexPage = lazy(() => import('src/pages/dashboard/one'));
-const SearchPage = lazy(() => import('src/pages/dashboard/search'));
-const MyListPage = lazy(() => import('src/pages/dashboard/myList'));
-const ProblemAdd = lazy(() => import('src/pages/dashboard/addProblem'));
-const PageFour = lazy(() => import('src/pages/dashboard/four'));
-const PageFive = lazy(() => import('src/pages/dashboard/five'));
-const PageSix = lazy(() => import('src/pages/dashboard/six'));
-const AboutSet = lazy(() => import('src/pages/dashboard/aboutSet'));
+const IndexPage = lazy(() => import('src/pages/dashboard/home'));
+const ProblemSetPage = lazy(() => import('src/pages/dashboard/problemSet'));
+// const SearchPage = lazy(() => import('src/pages/dashboard/search'));
+// const MyListPage = lazy(() => import('src/pages/dashboard/myList'));
+// const ProblemAdd = lazy(() => import('src/pages/dashboard/addProblem'));
+// const PageFour = lazy(() => import('src/pages/dashboard/four'));
+// const PageFive = lazy(() => import('src/pages/dashboard/five'));
+// const PageSix = lazy(() => import('src/pages/dashboard/six'));
+// const AboutSet = lazy(() => import('src/pages/dashboard/aboutSet'));
 
 // ----------------------------------------------------------------------
 
@@ -34,18 +36,19 @@ export const dashboardRoutes = [
     ),
     children: [
       { element: <IndexPage />, index: true },
-      { path: 'search', element: <SearchPage /> },
-      { path: 'myList', element: <MyListPage /> },
-      { path: 'addProblem', element: <ProblemAdd /> },
-      { path: 'aboutSet', element: <AboutSet /> },
-      {
-        path: 'group',
-        children: [
-          { element: <PageFour />, index: true },
-          { path: 'five', element: <PageFive /> },
-          { path: 'six', element: <PageSix /> },
-        ],
-      },
+      { path: 'problem-sets', element: <ProblemSetPage /> },
+      { path: 'problem-set/:id', element: <ProblemSetDetail /> },
+      // { path: 'myList', element: <MyListPage /> },
+      // { path: 'addProblem', element: <ProblemAdd /> },
+      // { path: 'aboutSet', element: <AboutSet /> },
+      // {
+      //   path: 'group',
+      //   children: [
+      //     { element: <PageFour />, index: true },
+      //     { path: 'five', element: <PageFive /> },
+      //     { path: 'six', element: <PageSix /> },
+      //   ],
+      // },
     ],
   },
 ];

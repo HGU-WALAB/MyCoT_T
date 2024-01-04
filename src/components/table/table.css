@@ -1,0 +1,45 @@
+.row {
+  }
+  
+  .column {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  .left_panel {
+    background-color: #7bd4cc;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .right_nav i {
+    margin-left: 1rem;
+  }
+  
+  #chart_datas {
+    padding: 1rem;
+  }
+  
+  .input_wrp input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .addRowBtn {
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .addRowBtn i {
+    color: #fff;
+    background-color: #bea42e;
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+  

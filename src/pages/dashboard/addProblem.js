@@ -1,45 +1,24 @@
 /* eslint-disable */
 
 import React from 'react';
-import { Box } from '@mui/material';
-import { useStyles } from './myProblemListStyles';
 
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
 // @mui
 import Masonry from '@mui/lab/Masonry';
-import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 // components
-import Iconify from 'src/components/iconify';
 import Button from "@mui/material/Button";
 import { useTheme } from '@mui/material/styles';
-import { bgBlur } from 'src/theme/css';
 import styled from 'styled-components';
 import { ThemeProvider } from 'styled-components';
-import MyCotService from 'src/utils/mycot-service';
-import Dropdown from "./dropdown";
-
-const Btn = styled.button`
-  background-color: ${props => props.theme.palette.primary['Darker']};
-  color: black;
-`
+import myCotService from 'src/utils/mycot-service';
 
 // ----------------------------------------------------------------------
-
-const CURRENCIES = [
-  { value: 'USD', label: '$' },
-  { value: 'EUR', label: '€' },
-  { value: 'BTC', label: '฿' },
-  { value: 'JPY', label: '¥' },
-];
 
 const MyProblemList = () => {
   const theme = useTheme();
   const [currency, setCurrency] = useState('EUR');
-  const apiService = new MyCotService(process.env.REACT_APP_MYCOT_HOST_API);
 
   const [values, setValues] = useState({
     title: '',
@@ -48,26 +27,14 @@ const MyProblemList = () => {
     difficulty: '',
   });
 
-  const handleChangeCurrency = useCallback((event) => {
-    setCurrency(event.target.value);
-  }, []);
-
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleShowPassword = useCallback(() => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  }, [values]);
-
-  const handleMouseDownPassword = useCallback((event) => {
-    event.preventDefault();
-  }, []);
-
   const handleConfirm = async () => {
     try {
       console.log(values); // 먼저 콘솔에 출력
-      await apiService.postProblem(values);
+      await myCotService.postProblem(values);
 
       // 성공 시 알림
       alert('문제가 성공적으로 추가되었습니다!');

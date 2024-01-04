@@ -1,94 +1,38 @@
-/* eslint-disable */
-
-import styled from 'styled-components';
-import { Link } from "react-router-dom";
-
-import MyCotService from 'src/utils/mycot-service';
 import { useState, useEffect } from 'react';
-import { palette } from 'src/theme/palette';
-import DotMenu from "./dotMenu"
-
-const BigBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-`
-const RowBox = styled.div`
-  flex-direction: row;
-`
-const PListBox = styled.div`
-  justify-content: flex-start;
-  width: 200px;
-  background-color: #FFE7D6;
-  border: 1px solid transparent;
-  box-shadow: 5px 5px 10px darkgray;
-  border-radius: 15px;
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-`
-const ListName = styled.div`
-  font-weight: bolder;
-  font-size: large;
-`
-
-const openNewWindow = (clickedItem) => {
-  const { id, author, content, emotion } = clickedItem;
-  const newWindowURL = `dashboard/aboutSet?id=${id}&author=${author}&content=${content}&emotion=${emotion}`;
-  console.log('새 창 열기 URL:', newWindowURL);
-  window.open(newWindowURL, '_blank');
-};
+import myCotService from 'src/utils/mycot-service';
+// sections
+import { CardLayout } from 'src/layouts/card/card-layout';
+import SlidUpCard from 'src/components/card';
+import { useNavigate } from 'react-router-dom';
 
 
-const ProblemSetList = ({ problemSet }) => (
-  <div className="ProblemSet">
-    <h2>인기 문제 리스트</h2>
-    <h4>{problemSet.length} problem sets</h4>
-    <BigBox>
-      {problemSet.map((it) => (
 
-        <PListBox key={it.id} >
-          <Link to={`/dashboard/aboutSet`} state={{ id: it.id }}
-            style={{
-              textDecoration: "none",
-              color: 'inherit'
-            }}>
-            <RowBox>
-              <ListName>{it.title}</ListName>
-            </RowBox>
-            <div>made by {it.creator}</div>
-            <div>{it.savedCnt} hits!</div>
-          </Link>
-        </PListBox>
-
-      ))}
-    </BigBox>
-  </div >
-);
-
-const ProblemSet = () => {
-  const [data, setData] = useState([]);
-  const apiService = new MyCotService();
+export default function Page() {
+  const navigate = useNavigate();
+  const [problemSets, setProblemSets] = useState([]); // 문제들의 정보를 저장할 state
 
   const fetchProblemSets = async () => {
-    const fetchedData = await apiService.getProblemSets({});
-    setData(fetchedData);
+    const fetchedData = await myCotService.getProblemSets({});
+    setProblemSets(fetchedData);
+  }
+
+  const onClick = async (id) => {
+    const res = await myCotService.createRegisteredProblemSet(id);
+    console.log("res", res)
+    navigate(`/dashboard/problem-set/${id}`);
   }
 
   useEffect(() => {
     fetchProblemSets();
   }, []);
 
-  let sortedData = [];
-  if (data !== null) {
-    sortedData = [...data].sort((a, b) => b.savedCnt - a.savedCnt);
-  }
-  const topEight = sortedData.slice(0, 8);
-
   return (
-    <ProblemSetList problemSet={topEight} />
-  )
+    <>
+      <CardLayout>
+        {problemSets.map((p) => (
+          <SlidUpCard key={p.id} title={p.title} subtitle={p.description} content={`제작자: ${p.creator}\n${p.content}`} onClick={() => onClick(p.id)} />
+        ))}
+      </CardLayout>
+    </>
+  );
 }
-
-export default ProblemSet;
