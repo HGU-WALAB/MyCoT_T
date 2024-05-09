@@ -15,7 +15,6 @@ class MyCotService {
     axios.defaults.paramsSerializer = params => {
       return qs.stringify(params);
     }
-    console.log("process.env.REACT_APP_MYCOT_HOST_API", process.env.REACT_APP_MYCOT_HOST_API)
   }
 
   handleError = (e) => {

@@ -13,6 +13,7 @@ export default function Page() {
 
   const fetchProblemSets = async () => {
     const fetchedData = await myCotService.getProblemSets({});
+  console.log("fetchedData", fetchedData)
     setProblemSets(fetchedData);
   }
 
@@ -30,7 +31,7 @@ export default function Page() {
     <>
       <CardLayout>
         {problemSets.map((p) => (
-          <SlidUpCard key={p.id} title={p.title} subtitle={p.description} content={`제작자: ${p.creator}\n${p.content}`} onClick={() => onClick(p.id)} />
+          <SlidUpCard key={p.id} title={p.title} subtitle={`제작자: ${p.creator ? p.creator.nickname : "익명"}   문제수: ${p.problemCnt}`} content={p.description} onClick={() => onClick(p.id)} />
         ))}
       </CardLayout>
     </>
